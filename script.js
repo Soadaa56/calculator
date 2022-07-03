@@ -3,7 +3,8 @@ const operationButtons = document.querySelectorAll('[data-operation]');
 const equalButton = document.querySelector('[data-equal]');
 const deleteButton = document.querySelector('[data-delete]');
 const allClearButton = document.querySelector('[data-all-clear]');
-
+const previousOperandElement = document.querySelector('[data-previous-operand]');
+const currentOperandElement = document.querySelector('[data-current-operand]');
 const sum = function(numbers) {
     let total = 0;
     for (i = 0; i < numbers.length; i++) {
