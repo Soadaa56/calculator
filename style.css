@@ -59,10 +59,14 @@ button:active {
     margin-right: 100px;
 }
 
-#equal {
+.wide-button {
     min-width: 115px;
 }
 
 #operators {
     text-align: end;
+}
+
+#operators > div.bottom-row > button {
+    background-color: rgb(102, 228, 102);
 }
