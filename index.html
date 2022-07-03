@@ -11,53 +11,53 @@
     <div id="calculator-container">
       <div id="calculator">
         <div id="display">
-            <div id="display-output">output</div>
-            <div id="display-input">input</div>
+            <div data-previous-operand id="display-output">output</div>
+            <div data-current-operand id="display-input">input</div>
         </div>
         <div id="buttons-container">
             <div id="numbers">
                 <div class="top-row">
-                    <button>7</button>
-                    <button>8</button>
-                    <button>9</button>
+                    <button data-number>7</button>
+                    <button data-number>8</button>
+                    <button data-number>9</button>
                 </div>
                 <div class="middle-top-row">
-                    <button>4</button>
-                    <button>5</button>
-                    <button>6</button>
+                    <button data-number>4</button>
+                    <button data-number>5</button>
+                    <button data-number>6</button>
                 </div>
                 <div class="middle-bottom-row">
-                    <button>1</button>
-                    <button>2</button>
-                    <button>3</button>
+                    <button data-number>1</button>
+                    <button data-number>2</button>
+                    <button data-number>3</button>
                 </div>
                 <div class="bottom-row">
-                    <button>0</button>
-                    <button>.</button>
+                    <button data-number>0</button>
+                    <button data-number>.</button>
                 </div>
             </div>
             <div id="delete-buttons">
                 <div class="top-row">
-                    <button class="wide-button">Clear</button>
+                    <button data-all-clear class="wide-button">Clear</button>
                 </div>
                 <div class="middle-top-row">
-                    <button class="wide-button">Del</button>
+                    <button data-delete class="wide-button">Del</button>
                 </div>
             </div>
             <div id="operators">
                 <div class="top-row">
-                    <button>+</button>
-                    <button>/</button>
+                    <button data-operation>+</button>
+                    <button data-operation>/</button>
                 </div>
                 <div class="middle-top-row">
-                    <button>-</button>
-                    <button>x</button>
+                    <button data-operation>-</button>
+                    <button data-operation>x</button>
                 </div>
                 <div class="middle-bottom-row">
-                    <button>X<span>&#178;</span></button>
+                    <button data-operation>X<span>&#178;</span></button>
                 </div>
                 <div class="bottom-row">
-                    <button class="wide-button">=</button>
+                    <button data-equal class="wide-button">=</button>
                 </div>
             </div>
         </div>
