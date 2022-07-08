@@ -9,6 +9,7 @@ const currentOperandElement = document.querySelector('[data-current-operand]');
 const equationArray = [];
 let operandPosistion;
 let equationResult;
+let term;
 
 // numberButtons
 for (i = 0; i < numberButtons.length; i++) {
@@ -16,7 +17,10 @@ for (i = 0; i < numberButtons.length; i++) {
         let currentlyClickedButton = e.target;
         let value = currentlyClickedButton.getAttribute('data-number');
         currentOperandElement.textContent += value;
-        equationArray.push(value);
+        parseInt(value);
+        term +=  value;
+        console.log(term);
+        console.log(typeof(term));
     });
 }
 
@@ -51,8 +55,8 @@ const operate = function() {
     let expression = equationArray.toString().replace(/,/g,"");
 
     // Seperates the two terms from the operator
-    termOne = parseInt(expression.slice(0, operandPosistion));
-    termTwo = parseInt(expression.slice(operandPosistion + 1));
+    firstTerm = parseInt(expression.slice(0, operandPosistion));
+    secondTerm = parseInt(expression.slice(operandPosistion + 1));
     operand = expression.charAt(operandPosistion);
     getEquationResult(operand);
 }
@@ -61,16 +65,16 @@ const operate = function() {
 const getEquationResult = function(operand) {
     switch (operand) {
         case '+':
-            equationResult = termOne + termTwo;
+            sum();
             break;
         case '-':
-            equationResult = termOne - termTwo;
+            subtract();
             break;
         case 'x' :
-            equationResult = termOne * termTwo;
+            multiply();
             break;
         case '/' :
-            equationResult = termOne / termTwo;
+            divide();
             break;
         default:
             console.log('bug on switch statement')
@@ -78,32 +82,28 @@ const getEquationResult = function(operand) {
             break;
     }
 }
-const sum = function(numbers) {
-    let total = 0;
-    for (i = 0; i < numbers.length; i++) {
-        total += numbers[i]
-    }
+const sum = function(firstTerm, secondTerm) {
+    total = firstTerm + secondTerm;
     return total;
 };
 
-const multiply = function(numbers) {
-    let total = numbers[0];
-    for (i = 1; i < numbers.length; i++) {
-        total *= numbers[i]
-    }
+const subtract = function(firstTerm, secondTerm) {
+    total = firstTerm - secondTerm;
     return total;
 };
 
-const divide = function(numbers) {
-    let total = numbers[0];
-    for (i = 1; i < numbers.length; i++) {
-        total /= numbers[i];
-    }
+const multiply = function(firstTerm, secondTerm) {
+    total = firstTerm * secondTerm;
     return total;
 };
 
-const power = function(a,b) {
-	let total = Math.pow(a,b);
+const divide = function(firstTerm, secondTerm) {
+    total = firstTerm / secondTerm
+    return total;
+};
+
+const power = function(firstTerm, secondTerm) {
+	let total = Math.pow(firstTerm, secondTerm);
   return total;
 };
 
