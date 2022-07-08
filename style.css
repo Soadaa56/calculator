@@ -1,6 +1,7 @@
 html {
     font-size: 2em;
     font-family: fantasy, sans-serif;
+    background-color: beige;
 }
 
 button {
@@ -36,6 +37,7 @@ button:hover {
     height: auto;
     border: 4px solid black;
     box-shadow: 5px 3px 2px lightblue;
+    background-color: azure;
 }
 
 #display {
