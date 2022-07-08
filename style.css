@@ -1,5 +1,6 @@
 html {
     font-size: 2em;
+    font-family: fantasy, sans-serif;
 }
 
 button {
@@ -19,6 +20,10 @@ button:active {
     background-color: yellow;
 }
 
+button:hover {
+    background-color: snow;
+}
+
 #calculator-container {
     display: flex;
     align-items: center;
@@ -27,7 +32,7 @@ button:active {
 }
 
 #calculator {
-    min-width: 600px;
+    min-width: 500px;
     height: auto;
     border: 4px solid black;
     box-shadow: 5px 3px 2px lightblue;
@@ -69,4 +74,8 @@ button:active {
 
 #operators > div.bottom-row > button {
     background-color: rgb(102, 228, 102);
+}
+
+#operators > div.bottom-row > button:hover {
+    background-color: rgb(157, 240, 157);
 }
