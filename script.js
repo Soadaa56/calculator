@@ -9,7 +9,7 @@ const currentOperandElement = document.querySelector('[data-current-operand]');
 const equationArray = [];
 let operandPosistion;
 let equationResult;
-let term;
+let term = 0;
 
 // numberButtons
 for (i = 0; i < numberButtons.length; i++) {
@@ -17,10 +17,7 @@ for (i = 0; i < numberButtons.length; i++) {
         let currentlyClickedButton = e.target;
         let value = currentlyClickedButton.getAttribute('data-number');
         currentOperandElement.textContent += value;
-        parseInt(value);
         term +=  value;
-        console.log(term);
-        console.log(typeof(term));
     });
 }
 
@@ -30,7 +27,8 @@ for (i = 0; i < operationButtons.length; i++) {
         let currentlyClickedButton = e.target;
         let operand = currentlyClickedButton.getAttribute('data-operation');
         currentOperandElement.textContent += ' ' + operand + ' ';
-        equationArray.push(operand);
+        equationArray.push(term);
+        console.log(equationArray);
         operandPosistion = equationArray.indexOf(operand);
     });
 }
