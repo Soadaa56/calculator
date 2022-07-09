@@ -76,10 +76,26 @@ button:hover {
     margin-right: 20px;
 }
 
+.operand {
+    background-color:darkslateblue;
+}
+
 #operators > div.bottom-row > button {
     background-color: rgb(102, 228, 102);
 }
 
 #operators > div.bottom-row > button:hover {
     background-color: rgb(157, 240, 157);
+}
+
+#delete-buttons > div.top-row > button {
+    background-color: darkred;
+}
+
+#delete-buttons > div.middle-top-row > button   {
+    background-color: darkred;
+}
+
+.number {
+    background-color: aqua;
 }
