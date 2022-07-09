@@ -58,6 +58,7 @@ button:hover {
 
 #buttons-container {
     margin-top: 20px;
+    margin-bottom: 10px;
     display: flex;
     justify-content: flex-end;
 }
@@ -72,6 +73,7 @@ button:hover {
 
 #operators {
     text-align: end;
+    margin-right: 20px;
 }
 
 #operators > div.bottom-row > button {
