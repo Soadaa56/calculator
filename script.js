@@ -7,9 +7,11 @@ const previousOperandElement = document.querySelector('[data-previous-operand]')
 const currentOperandElement = document.querySelector('[data-current-operand]');
 
 const numberArray = [];
-let operandChoice;
-let equationResult;
 let term = 0;
+let operandAmount = 0;
+let operandChoice;
+let secondOperandChoice;
+let equationResult;
 let firstTerm;
 let secondTerm;
 
@@ -19,13 +21,7 @@ for (i = 0; i < numberButtons.length; i++) {
         let currentlyClickedButton = e.target;
         let value = currentlyClickedButton.getAttribute('data-number');
         currentOperandElement.textContent += value;
-        // Stops initial term value 0 being dragged along into numberArray
-        if (term === 0) {
-            term = value
-        } else {
-            term = 0
-            term += value
-        }
+        term += value
     });
 }
 
@@ -33,14 +29,17 @@ for (i = 0; i < numberButtons.length; i++) {
 for (i = 0; i < operationButtons.length; i++) {
     operationButtons[i].addEventListener('click', function(e) {
         let currentlyClickedButton = e.target;
-        operandChoice = currentlyClickedButton.getAttribute('data-operation');
+        if (operandAmount <1) operandChoice = currentlyClickedButton.getAttribute('data-operation');
         currentOperandElement.textContent += ' ' + operandChoice + ' ';
-        // store first term given, second term calculates equationResult
+        // store first term given, if there is a second term, calculate result
         if (numberArray.length === 0) {
             numberArray.push(term);
             term = 0;
+            operandAmount += 1;
         } else if (numberArray.length === 1) {
-            
+            operandAmount += 1;
+            secondOperandChoice = currentlyClickedButton.getAttribute('data-operation')
+            checkOperandAmountToCalculate();
         }
     });
 }
@@ -50,15 +49,36 @@ equalButton.addEventListener('click', () => {
     operate(operandChoice);
     previousOperandElement.textContent = currentOperandElement.textContent + ' = ' + equationResult;
     currentOperandElement.textContent = equationResult;
+    operandChoice = '';
+    term = 0;
+    operandAmount = 0;
 });
 
 allClearButton.addEventListener('click', () => {
     numberArray.length = 0;
+    term = 0;
+    operandAmount = 0;
     operandChoice = '';
     equationResult = '';
     previousOperandElement.textContent = '';
     currentOperandElement.textContent = '';
 });
+
+deleteButton.addEventListener('click', () => {
+
+});
+
+const checkOperandAmountToCalculate = function() {
+    if (operandChoice != "" && operandAmount === 2) {
+        numberArray.push(term);
+        operate(operandChoice);
+        operandChoice = secondOperandChoice;
+        previousOperandElement.textContent = currentOperandElement.textContent + ' = ' + equationResult;
+        currentOperandElement.textContent = equationResult + ' ' + operandChoice + ' ';
+        term = 0;
+        operandAmount = 1;
+    }
+}
 
 const operate = function() {
     firstTerm = parseInt(numberArray[0]);
@@ -83,6 +103,9 @@ const getEquationResult = function() {
             break;
         case '/' :
             divide(firstTerm, secondTerm);
+            break;
+        case '^':
+            power(firstTerm, secondTerm);
             break;
         default:
             console.log('bug on switch statement')
