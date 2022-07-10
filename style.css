@@ -1,6 +1,7 @@
 html {
     font-size: 2em;
     font-family: fantasy, sans-serif;
+    background-color: beige;
 }
 
 button {
@@ -36,6 +37,7 @@ button:hover {
     height: auto;
     border: 4px solid black;
     box-shadow: 5px 3px 2px lightblue;
+    background-color: azure;
 }
 
 #display {
@@ -56,12 +58,13 @@ button:hover {
 
 #buttons-container {
     margin-top: 20px;
+    margin-bottom: 10px;
     display: flex;
     justify-content: flex-end;
 }
 
 #numbers {
-    margin-right: 100px;
+    margin-right: 20px;
 }
 
 .wide-button {
@@ -70,6 +73,15 @@ button:hover {
 
 #operators {
     text-align: end;
+    margin-right: 20px;
+}
+
+.operand {
+    background-color: darkslateblue;
+}
+
+.operand:hover {
+    background-color: rgb(106, 92, 194);
 }
 
 #operators > div.bottom-row > button {
@@ -78,4 +90,20 @@ button:hover {
 
 #operators > div.bottom-row > button:hover {
     background-color: rgb(157, 240, 157);
+}
+
+#delete-button, #clear-button  {
+    background-color: darkred;
+}
+
+#delete-button:hover , #clear-button:hover {
+    background-color:crimson
+}
+
+.number {
+    background-color: rgba(0, 255, 255, 0.267);
+}
+
+.number:hover {
+    background-color: aqua;
 }

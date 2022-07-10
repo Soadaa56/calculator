@@ -6,9 +6,14 @@ const allClearButton = document.querySelector('[data-all-clear]');
 const previousOperandElement = document.querySelector('[data-previous-operand]');
 const currentOperandElement = document.querySelector('[data-current-operand]');
 
-const equationArray = [];
-let operandPosistion;
+const numberArray = [];
+let term = 0;
+let operandAmount = 0;
+let operandChoice;
+let secondOperandChoice;
 let equationResult;
+let firstTerm;
+let secondTerm;
 
 // numberButtons
 for (i = 0; i < numberButtons.length; i++) {
@@ -16,61 +21,91 @@ for (i = 0; i < numberButtons.length; i++) {
         let currentlyClickedButton = e.target;
         let value = currentlyClickedButton.getAttribute('data-number');
         currentOperandElement.textContent += value;
-        equationArray.push(value);
+        term += value
     });
 }
 
-// operands
+// operandButtons
 for (i = 0; i < operationButtons.length; i++) {
     operationButtons[i].addEventListener('click', function(e) {
         let currentlyClickedButton = e.target;
-        let operand = currentlyClickedButton.getAttribute('data-operation');
-        currentOperandElement.textContent += ' ' + operand + ' ';
-        equationArray.push(operand);
-        operandPosistion = equationArray.indexOf(operand);
+        if (operandAmount <1) operandChoice = currentlyClickedButton.getAttribute('data-operation');
+        currentOperandElement.textContent += ' ' + operandChoice + ' ';
+        // store first term given, if there is a second term, calculate result
+        if (numberArray.length === 0) {
+            numberArray.push(term);
+            term = 0;
+            operandAmount += 1;
+        } else if (numberArray.length === 1) {
+            operandAmount += 1;
+            secondOperandChoice = currentlyClickedButton.getAttribute('data-operation')
+            checkOperandAmountToCalculate();
+        }
     });
 }
 
 equalButton.addEventListener('click', () => {
-    operate();
+    numberArray.push(term);
+    operate(operandChoice);
     previousOperandElement.textContent = currentOperandElement.textContent + ' = ' + equationResult;
     currentOperandElement.textContent = equationResult;
-    equationArray.length = 0;
+    operandChoice = '';
+    term = 0;
+    operandAmount = 0;
 });
 
 allClearButton.addEventListener('click', () => {
-    equationArray.length = 0;
-    operandPosistion = '';
+    numberArray.length = 0;
+    term = 0;
+    operandAmount = 0;
+    operandChoice = '';
     equationResult = '';
     previousOperandElement.textContent = '';
     currentOperandElement.textContent = '';
 });
 
-const operate = function() {
-    // Allows array to be sliced; Combines multiple numbers into a singular term
-    let expression = equationArray.toString().replace(/,/g,"");
+deleteButton.addEventListener('click', () => {
 
-    // Seperates the two terms from the operator
-    termOne = parseInt(expression.slice(0, operandPosistion));
-    termTwo = parseInt(expression.slice(operandPosistion + 1));
-    operand = expression.charAt(operandPosistion);
-    getEquationResult(operand);
+});
+
+const checkOperandAmountToCalculate = function() {
+    if (operandChoice != "" && operandAmount === 2) {
+        numberArray.push(term);
+        operate(operandChoice);
+        operandChoice = secondOperandChoice;
+        previousOperandElement.textContent = currentOperandElement.textContent + ' = ' + equationResult;
+        currentOperandElement.textContent = equationResult + ' ' + operandChoice + ' ';
+        term = 0;
+        operandAmount = 1;
+    }
+}
+
+const operate = function() {
+    firstTerm = parseInt(numberArray[0]);
+    secondTerm = parseInt(numberArray[1]);
+    getEquationResult(operandChoice);
+    numberArray.length = 0;
+    numberArray.push(equationResult);
+    term = equationResult;
 }
 
 
-const getEquationResult = function(operand) {
-    switch (operand) {
+const getEquationResult = function() {
+    switch (operandChoice) {
         case '+':
-            equationResult = termOne + termTwo;
+            sum(firstTerm, secondTerm);
             break;
         case '-':
-            equationResult = termOne - termTwo;
+            subtract(firstTerm, secondTerm);
             break;
         case 'x' :
-            equationResult = termOne * termTwo;
+            multiply(firstTerm, secondTerm);
             break;
         case '/' :
-            equationResult = termOne / termTwo;
+            divide(firstTerm, secondTerm);
+            break;
+        case '^':
+            power(firstTerm, secondTerm);
             break;
         default:
             console.log('bug on switch statement')
@@ -78,32 +113,29 @@ const getEquationResult = function(operand) {
             break;
     }
 }
-const sum = function(numbers) {
-    let total = 0;
-    for (i = 0; i < numbers.length; i++) {
-        total += numbers[i]
-    }
-    return total;
+
+const sum = function(firstTerm, secondTerm) {
+    equationResult = firstTerm + secondTerm;
+    return equationResult;
 };
 
-const multiply = function(numbers) {
-    let total = numbers[0];
-    for (i = 1; i < numbers.length; i++) {
-        total *= numbers[i]
-    }
-    return total;
+const subtract = function(firstTerm, secondTerm) {
+    equationResult = firstTerm - secondTerm;
+    return equationResult;
 };
 
-const divide = function(numbers) {
-    let total = numbers[0];
-    for (i = 1; i < numbers.length; i++) {
-        total /= numbers[i];
-    }
-    return total;
+const multiply = function(firstTerm, secondTerm) {
+    equationResult = firstTerm * secondTerm;
+    return equationResult;
 };
 
-const power = function(a,b) {
-	let total = Math.pow(a,b);
-  return total;
+const divide = function(firstTerm, secondTerm) {
+    equationResult = firstTerm / secondTerm
+    return equationResult;
+};
+
+const power = function(firstTerm, secondTerm) {
+	let equationResult = Math.pow(firstTerm, secondTerm);
+  return equationResult;
 };
 
