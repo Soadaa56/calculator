@@ -77,7 +77,11 @@ button:hover {
 }
 
 .operand {
-    background-color:darkslateblue;
+    background-color: darkslateblue;
+}
+
+.operand:hover {
+    background-color: rgb(106, 92, 194);
 }
 
 #operators > div.bottom-row > button {
@@ -88,14 +92,18 @@ button:hover {
     background-color: rgb(157, 240, 157);
 }
 
-#delete-buttons > div.top-row > button {
+#delete-button, #clear-button  {
     background-color: darkred;
 }
 
-#delete-buttons > div.middle-top-row > button   {
-    background-color: darkred;
+#delete-button:hover , #clear-button:hover {
+    background-color:crimson
 }
 
 .number {
+    background-color: rgba(0, 255, 255, 0.267);
+}
+
+.number:hover {
     background-color: aqua;
 }
