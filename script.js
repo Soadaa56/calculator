@@ -97,7 +97,7 @@ const getEquationResult = function() {
             sum(numberArray);
             break;
         case '-':
-            numberArray[1] = numberArray[1] * -1
+            secondTerm = secondTerm * -1
             sum(numberArray);
             break;
         case 'x' :
