@@ -101,7 +101,7 @@ const getEquationResult = function() {
             sum(numberArray);
             break;
         case 'x' :
-            multiply(firstTerm, secondTerm);
+            multiply(numberArray);
             break;
         case '/' :
             divide(firstTerm, secondTerm);
@@ -125,10 +125,13 @@ const sum = function(numberArray) {
     return equationResultRounded;
 };
 
-const multiply = function(firstTerm, secondTerm) {
-    equationResult = firstTerm * secondTerm;
+const multiply = function(numberArray) {
+    let equationResult = numberArray[0];
+    for (i = 1; i < numberArray.length; i++) {
+        equationResult *= numberArray[i]
+    }
     equationResultRounded = equationResult.toFixed(4).replace(/\.0000$/, '');
-    return parseInt(equationResultRounded);
+    return parseFloat(equationResultRounded);
 };
 
 const divide = function(firstTerm, secondTerm) {
