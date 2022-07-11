@@ -14,6 +14,7 @@ let secondOperandChoice;
 let equationResult;
 let firstTerm;
 let secondTerm;
+let equationResultRounded;
 
 // numberButtons
 for (i = 0; i < numberButtons.length; i++) {
@@ -33,7 +34,7 @@ for (i = 0; i < operationButtons.length; i++) {
         currentOperandElement.textContent += ' ' + operandChoice + ' ';
         // store first term given, if there is a second term, calculate result
         if (numberArray.length === 0) {
-            numberArray.push(term);
+            numberArray.push(parseFloat(term));
             term = 0;
             operandAmount += 1;
         } else if (numberArray.length === 1) {
@@ -45,10 +46,10 @@ for (i = 0; i < operationButtons.length; i++) {
 }
 
 equalButton.addEventListener('click', () => {
-    numberArray.push(term);
+    numberArray.push(parseFloat(term));
     operate(operandChoice);
-    previousOperandElement.textContent = currentOperandElement.textContent + ' = ' + equationResult;
-    currentOperandElement.textContent = equationResult;
+    previousOperandElement.textContent = currentOperandElement.textContent + ' = ' + equationResultRounded;
+    currentOperandElement.textContent = equationResultRounded;
     operandChoice = '';
     term = 0;
     operandAmount = 0;
@@ -70,42 +71,43 @@ deleteButton.addEventListener('click', () => {
 
 const checkOperandAmountToCalculate = function() {
     if (operandChoice != "" && operandAmount === 2) {
-        numberArray.push(term);
+        numberArray.push(parseFloat(term));
         operate(operandChoice);
         operandChoice = secondOperandChoice;
-        previousOperandElement.textContent = currentOperandElement.textContent + ' = ' + equationResult;
-        currentOperandElement.textContent = equationResult + ' ' + operandChoice + ' ';
+        previousOperandElement.textContent = currentOperandElement.textContent + ' = ' + equationResultRounded;
+        currentOperandElement.textContent = equationResultRounded + ' ' + operandChoice + ' ';
         term = 0;
         operandAmount = 1;
     }
 }
 
 const operate = function() {
-    firstTerm = parseInt(numberArray[0]);
-    secondTerm = parseInt(numberArray[1]);
+    firstTerm = parseFloat(numberArray[0]);
+    secondTerm = parseFloat(numberArray[1]);
     getEquationResult(operandChoice);
     numberArray.length = 0;
-    numberArray.push(equationResult);
-    term = equationResult;
+    numberArray.push(equationResultRounded);
+    term = equationResultRounded;
 }
 
 
 const getEquationResult = function() {
     switch (operandChoice) {
         case '+':
-            sum(firstTerm, secondTerm);
+            sum(numberArray);
             break;
         case '-':
-            subtract(firstTerm, secondTerm);
+            secondTerm = secondTerm * -1
+            sum(numberArray);
             break;
         case 'x' :
-            multiply(firstTerm, secondTerm);
+            multiply(numberArray);
             break;
         case '/' :
-            divide(firstTerm, secondTerm);
+            divide(numberArray);
             break;
         case '^':
-            power(firstTerm, secondTerm);
+            power(numberArray);
             break;
         default:
             console.log('bug on switch statement')
@@ -114,28 +116,27 @@ const getEquationResult = function() {
     }
 }
 
-const sum = function(firstTerm, secondTerm) {
-    equationResult = firstTerm + secondTerm;
-    return equationResult;
+const sum = function(numberArray) {
+    let equationResult = firstTerm + secondTerm;
+    equationResultRounded = equationResult.toFixed(4).replace(/\.0000$/, '');
+    return equationResultRounded;
 };
 
-const subtract = function(firstTerm, secondTerm) {
-    equationResult = firstTerm - secondTerm;
-    return equationResult;
+const multiply = function(numberArray) {
+    let equationResult = firstTerm * secondTerm;
+    equationResultRounded = equationResult.toFixed(4).replace(/\.0000$/, '');
+    return parseFloat(equationResultRounded);
 };
 
-const multiply = function(firstTerm, secondTerm) {
-    equationResult = firstTerm * secondTerm;
-    return equationResult;
+const divide = function(numberArray) {
+    equationResult = firstTerm / secondTerm;
+    equationResultRounded = equationResult.toFixed(4).replace(/\.0000$/, '');
+    return parseInt(equationResultRounded);
 };
 
-const divide = function(firstTerm, secondTerm) {
-    equationResult = firstTerm / secondTerm
-    return equationResult;
-};
-
-const power = function(firstTerm, secondTerm) {
-	let equationResult = Math.pow(firstTerm, secondTerm);
-  return equationResult;
+const power = function(numberArray) {
+	equationResult = Math.pow(firstTerm, secondTerm);
+    equationResultRounded = equationResult.toFixed(4).replace(/\.0000$/, '');
+    return parseInt(equationResultRounded);
 };
 
