@@ -20,7 +20,7 @@ let equationResultRounded;
 for (i = 0; i < numberButtons.length; i++) {
     numberButtons[i].addEventListener('click', function(e) {
         let currentlyClickedButton = e.target;
-        let value = parseFloat(currentlyClickedButton.getAttribute('data-number'));
+        let value = currentlyClickedButton.getAttribute('data-number');
         currentOperandElement.textContent += value;
         term += value
     });
@@ -34,7 +34,7 @@ for (i = 0; i < operationButtons.length; i++) {
         currentOperandElement.textContent += ' ' + operandChoice + ' ';
         // store first term given, if there is a second term, calculate result
         if (numberArray.length === 0) {
-            numberArray.push(term);
+            numberArray.push(parseFloat(term));
             term = 0;
             operandAmount += 1;
         } else if (numberArray.length === 1) {
@@ -46,7 +46,7 @@ for (i = 0; i < operationButtons.length; i++) {
 }
 
 equalButton.addEventListener('click', () => {
-    numberArray.push(term);
+    numberArray.push(parseFloat(term));
     operate(operandChoice);
     previousOperandElement.textContent = currentOperandElement.textContent + ' = ' + equationResultRounded;
     currentOperandElement.textContent = equationResultRounded;
@@ -71,7 +71,7 @@ deleteButton.addEventListener('click', () => {
 
 const checkOperandAmountToCalculate = function() {
     if (operandChoice != "" && operandAmount === 2) {
-        numberArray.push(term);
+        numberArray.push(parseFloat(term));
         operate(operandChoice);
         operandChoice = secondOperandChoice;
         previousOperandElement.textContent = currentOperandElement.textContent + ' = ' + equationResultRounded;
@@ -97,7 +97,8 @@ const getEquationResult = function() {
             sum(numberArray);
             break;
         case '-':
-            subtract(firstTerm, secondTerm);
+            numberArray[1] = numberArray[1] * -1
+            sum(numberArray);
             break;
         case 'x' :
             multiply(firstTerm, secondTerm);
@@ -122,12 +123,6 @@ const sum = function(numberArray) {
     }
     equationResultRounded = equationResult.toFixed(4).replace(/\.0000$/, '');
     return equationResultRounded;
-  };
-
-const subtract = function(firstTerm, secondTerm) {
-    equationResult = parseFloat(firstTerm) - parseFloat(secondTerm);
-    equationResultRounded = equationResult.toFixed(4).replace(/\.0000$/, '');
-    return parseInt(equationResultRounded);
 };
 
 const multiply = function(firstTerm, secondTerm) {
