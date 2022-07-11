@@ -104,10 +104,10 @@ const getEquationResult = function() {
             multiply(numberArray);
             break;
         case '/' :
-            divide(firstTerm, secondTerm);
+            divide(numberArray);
             break;
         case '^':
-            power(firstTerm, secondTerm);
+            power(numberArray);
             break;
         default:
             console.log('bug on switch statement')
@@ -134,14 +134,14 @@ const multiply = function(numberArray) {
     return parseFloat(equationResultRounded);
 };
 
-const divide = function(firstTerm, secondTerm) {
-    equationResult = firstTerm / secondTerm;
+const divide = function(numberArray) {
+    equationResult = numberArray[0] / numberArray[1];
     equationResultRounded = equationResult.toFixed(4).replace(/\.0000$/, '');
     return parseInt(equationResultRounded);
 };
 
-const power = function(firstTerm, secondTerm) {
-	equationResult = Math.pow(firstTerm, secondTerm);
+const power = function(numberArray) {
+	equationResult = Math.pow(numberArray[0], numberArray[1]);
     equationResultRounded = equationResult.toFixed(4).replace(/\.0000$/, '');
     return parseInt(equationResultRounded);
 };
