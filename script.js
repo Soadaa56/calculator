@@ -117,31 +117,25 @@ const getEquationResult = function() {
 }
 
 const sum = function(numberArray) {
-    let equationResult = 0;
-    for (i = 0; i < numberArray.length; i++) {
-        equationResult += parseFloat(numberArray[i]);
-    }
+    let equationResult = firstTerm + secondTerm;
     equationResultRounded = equationResult.toFixed(4).replace(/\.0000$/, '');
     return equationResultRounded;
 };
 
 const multiply = function(numberArray) {
-    let equationResult = numberArray[0];
-    for (i = 1; i < numberArray.length; i++) {
-        equationResult *= numberArray[i]
-    }
+    let equationResult = firstTerm * secondTerm;
     equationResultRounded = equationResult.toFixed(4).replace(/\.0000$/, '');
     return parseFloat(equationResultRounded);
 };
 
 const divide = function(numberArray) {
-    equationResult = numberArray[0] / numberArray[1];
+    equationResult = firstTerm / secondTerm;
     equationResultRounded = equationResult.toFixed(4).replace(/\.0000$/, '');
     return parseInt(equationResultRounded);
 };
 
 const power = function(numberArray) {
-	equationResult = Math.pow(numberArray[0], numberArray[1]);
+	equationResult = Math.pow(firstTerm, secondTerm);
     equationResultRounded = equationResult.toFixed(4).replace(/\.0000$/, '');
     return parseInt(equationResultRounded);
 };
