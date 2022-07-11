@@ -14,6 +14,7 @@ let secondOperandChoice;
 let equationResult;
 let firstTerm;
 let secondTerm;
+let equationResultRounded;
 
 // numberButtons
 for (i = 0; i < numberButtons.length; i++) {
@@ -47,8 +48,8 @@ for (i = 0; i < operationButtons.length; i++) {
 equalButton.addEventListener('click', () => {
     numberArray.push(term);
     operate(operandChoice);
-    previousOperandElement.textContent = currentOperandElement.textContent + ' = ' + equationResult;
-    currentOperandElement.textContent = equationResult;
+    previousOperandElement.textContent = currentOperandElement.textContent + ' = ' + equationResultRounded;
+    currentOperandElement.textContent = equationResultRounded;
     operandChoice = '';
     term = 0;
     operandAmount = 0;
@@ -73,8 +74,8 @@ const checkOperandAmountToCalculate = function() {
         numberArray.push(term);
         operate(operandChoice);
         operandChoice = secondOperandChoice;
-        previousOperandElement.textContent = currentOperandElement.textContent + ' = ' + equationResult;
-        currentOperandElement.textContent = equationResult + ' ' + operandChoice + ' ';
+        previousOperandElement.textContent = currentOperandElement.textContent + ' = ' + equationResultRounded;
+        currentOperandElement.textContent = equationResultRounded + ' ' + operandChoice + ' ';
         term = 0;
         operandAmount = 1;
     }
@@ -85,8 +86,8 @@ const operate = function() {
     secondTerm = parseInt(numberArray[1]);
     getEquationResult(operandChoice);
     numberArray.length = 0;
-    numberArray.push(equationResult);
-    term = equationResult;
+    numberArray.push(equationResultRounded);
+    term = equationResultRounded;
 }
 
 
@@ -116,26 +117,31 @@ const getEquationResult = function() {
 
 const sum = function(firstTerm, secondTerm) {
     equationResult = firstTerm + secondTerm;
-    return equationResult;
+    equationResultRounded = equationResult.toFixed(4);
+    return parseInt(equationResultRounded);
 };
 
 const subtract = function(firstTerm, secondTerm) {
     equationResult = firstTerm - secondTerm;
-    return equationResult;
+    equationResultRounded = equationResult.toFixed(4);
+    return parseInt(equationResultRounded);
 };
 
 const multiply = function(firstTerm, secondTerm) {
     equationResult = firstTerm * secondTerm;
-    return equationResult;
+    equationResultRounded = equationResult.toFixed(4);
+    return parseInt(equationResultRounded);
 };
 
 const divide = function(firstTerm, secondTerm) {
-    equationResult = firstTerm / secondTerm
-    return equationResult;
+    equationResult = firstTerm / secondTerm;
+    equationResultRounded = equationResult.toFixed(4);
+    return parseInt(equationResultRounded);
 };
 
 const power = function(firstTerm, secondTerm) {
-	let equationResult = Math.pow(firstTerm, secondTerm);
-  return equationResult;
+	equationResult = Math.pow(firstTerm, secondTerm);
+    equationResultRounded = equationResult.toFixed(4);
+    return parseInt(equationResultRounded);
 };
 
