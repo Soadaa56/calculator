@@ -117,31 +117,31 @@ const getEquationResult = function() {
 
 const sum = function(firstTerm, secondTerm) {
     equationResult = firstTerm + secondTerm;
-    equationResultRounded = equationResult.toFixed(4);
+    equationResultRounded = equationResult.toFixed(4).replace(/\.0000$/, '');
     return parseInt(equationResultRounded);
 };
 
 const subtract = function(firstTerm, secondTerm) {
     equationResult = firstTerm - secondTerm;
-    equationResultRounded = equationResult.toFixed(4);
+    equationResultRounded = equationResult.toFixed(4).replace(/\.0000$/, '');
     return parseInt(equationResultRounded);
 };
 
 const multiply = function(firstTerm, secondTerm) {
     equationResult = firstTerm * secondTerm;
-    equationResultRounded = equationResult.toFixed(4);
+    equationResultRounded = equationResult.toFixed(4).replace(/\.0000$/, '');
     return parseInt(equationResultRounded);
 };
 
 const divide = function(firstTerm, secondTerm) {
     equationResult = firstTerm / secondTerm;
-    equationResultRounded = equationResult.toFixed(4);
+    equationResultRounded = equationResult.toFixed(4).replace(/\.0000$/, '');
     return parseInt(equationResultRounded);
 };
 
 const power = function(firstTerm, secondTerm) {
 	equationResult = Math.pow(firstTerm, secondTerm);
-    equationResultRounded = equationResult.toFixed(4);
+    equationResultRounded = equationResult.toFixed(4).replace(/\.0000$/, '');
     return parseInt(equationResultRounded);
 };
 
