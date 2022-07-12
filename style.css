@@ -81,7 +81,7 @@ button:hover {
 }
 
 .operand:hover {
-    background-color: rgb(106, 92, 194);
+    background-color: rgba(71, 61, 139, 0.70)
 }
 
 #operators > div.bottom-row > button {
@@ -89,7 +89,7 @@ button:hover {
 }
 
 #operators > div.bottom-row > button:hover {
-    background-color: rgba(0, 100, 0, 0.63);
+    background-color: rgba(0, 100, 0, 0.70);
 }
 
 #delete-button, #clear-button  {
@@ -97,7 +97,7 @@ button:hover {
 }
 
 #delete-button:hover , #clear-button:hover {
-    background-color: rgba(139, 0, 0, 0.637);
+    background-color: rgba(139, 0, 0, 0.70);
 }
 
 .number {
@@ -105,5 +105,5 @@ button:hover {
 }
 
 .number:hover {
-    background-color: rgba(95, 158, 160, 0.5)
+    background-color: rgba(95, 158, 160, 0.70)
 }
