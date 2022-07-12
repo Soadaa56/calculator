@@ -15,6 +15,8 @@ let equationResult;
 let firstTerm;
 let secondTerm;
 let equationResultRounded;
+let isNumber;
+let isOperand;
 let divideByZero = false
 
 // numberButtons
@@ -106,6 +108,7 @@ const getEquationResult = function() {
             sum(numberArray);
             break;
         case 'x' :
+        case '*' :
             multiply(numberArray);
             break;
         case '/' :
@@ -115,7 +118,7 @@ const getEquationResult = function() {
             power(numberArray);
             break;
         default:
-            console.log('bug on switch statement')
+            console.log('bug on getEquationResult switch statement')
             equationResult = 'error'
             break;
     }
@@ -155,3 +158,38 @@ function isSecondTermZero(numberArray) {
     
 }
 
+// keyboard support
+window.addEventListener('keyup', function(e) {
+    isNumber = isFinite(e.key);
+    isOperand = /^[+-/*^]$/.test(e.key);
+    isEqual = /^[=,]$/.test(e.key) || e.key == 'Enter';
+
+    if (isNumber === true) {
+        value = e.key;
+        currentOperandElement.textContent += value;
+        term += value;
+    }
+    if (isOperand === true) {
+        if (operandAmount <1) operandChoice = e.key;
+        currentOperandElement.textContent += ' ' + operandChoice + ' ';
+        // store first term given, if there is a second term, calculate result
+        if (numberArray.length === 0) {
+            numberArray.push(parseFloat(term));
+            term = 0;
+            operandAmount += 1;
+        } else if (numberArray.length === 1) {
+            operandAmount += 1;
+            secondOperandChoice = e.key;
+            checkOperandAmountToCalculate();
+        }
+    }
+    if (isEqual === true) {
+        numberArray.push(parseFloat(term));
+        operate(operandChoice);
+        previousOperandElement.textContent = currentOperandElement.textContent + ' = ' + equationResultRounded;
+        currentOperandElement.textContent = equationResultRounded;
+        operandChoice = '';
+        term = 0;
+        operandAmount = 0;
+    }
+});
