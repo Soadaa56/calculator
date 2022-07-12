@@ -85,11 +85,11 @@ button:hover {
 }
 
 #operators > div.bottom-row > button {
-    background-color: rgb(102, 228, 102);
+    background-color: darkgreen;
 }
 
 #operators > div.bottom-row > button:hover {
-    background-color: rgb(157, 240, 157);
+    background-color: rgba(0, 100, 0, 0.63);
 }
 
 #delete-button, #clear-button  {
@@ -97,13 +97,13 @@ button:hover {
 }
 
 #delete-button:hover , #clear-button:hover {
-    background-color:crimson
+    background-color: rgba(139, 0, 0, 0.637);
 }
 
 .number {
-    background-color: rgba(0, 255, 255, 0.267);
+    background-color:cadetblue;
 }
 
 .number:hover {
-    background-color: aqua;
+    background-color: rgba(95, 158, 160, 0.5)
 }
