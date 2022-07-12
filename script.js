@@ -15,6 +15,7 @@ let equationResult;
 let firstTerm;
 let secondTerm;
 let equationResultRounded;
+let divideByZero = false
 
 // numberButtons
 for (i = 0; i < numberButtons.length; i++) {
@@ -85,6 +86,10 @@ const operate = function() {
     firstTerm = parseFloat(numberArray[0]);
     secondTerm = parseFloat(numberArray[1]);
     getEquationResult(operandChoice);
+    if (divideByZero === true ) {
+        equationResultRounded = 'Not allowed here bud';
+        divideByZero = false;
+    }
     numberArray.length = 0;
     numberArray.push(equationResultRounded);
     term = equationResultRounded;
@@ -129,9 +134,12 @@ const multiply = function(numberArray) {
 };
 
 const divide = function(numberArray) {
-    equationResult = firstTerm / secondTerm;
-    equationResultRounded = equationResult.toFixed(4).replace(/\.0000$/, '');
-    return parseInt(equationResultRounded);
+    isSecondTermZero(secondTerm)
+    if (divideByZero === false) {
+        equationResult = firstTerm / secondTerm;
+        equationResultRounded = equationResult.toFixed(4).replace(/\.0000$/, '');
+        return parseInt(equationResultRounded);
+    } 
 };
 
 const power = function(numberArray) {
@@ -139,4 +147,11 @@ const power = function(numberArray) {
     equationResultRounded = equationResult.toFixed(4).replace(/\.0000$/, '');
     return parseInt(equationResultRounded);
 };
+
+function isSecondTermZero(numberArray) {
+    if (secondTerm === 0) {
+        return divideByZero = true;
+    }
+    
+}
 
