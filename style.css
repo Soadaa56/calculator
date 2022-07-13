@@ -107,3 +107,7 @@ button:hover {
 .number:hover {
     background-color: rgba(95, 158, 160, 0.70)
 }
+
+.disabled {
+    filter: grayscale(80%);
+}

@@ -5,10 +5,12 @@ const deleteButton = document.querySelector('[data-delete]');
 const allClearButton = document.querySelector('[data-all-clear]');
 const previousOperandElement = document.querySelector('[data-previous-operand]');
 const currentOperandElement = document.querySelector('[data-current-operand]');
+const decimalButton = document.querySelector("#numbers > div.bottom-row > button:nth-child(2)")
 
 const numberArray = [];
 let term = 0;
 let operandAmount = 0;
+let decimalCount = 0;
 let operandChoice;
 let secondOperandChoice;
 let equationResult;
@@ -17,7 +19,9 @@ let secondTerm;
 let equationResultRounded;
 let isNumber;
 let isOperand;
-let divideByZero = false
+let decimalInSecondTerm;
+let divideByZero = false;
+let isDecimal = false;
 
 // numberButtons
 for (i = 0; i < numberButtons.length; i++) {
@@ -26,6 +30,7 @@ for (i = 0; i < numberButtons.length; i++) {
         let value = currentlyClickedButton.getAttribute('data-number');
         currentOperandElement.textContent += value;
         term += value
+        isDecimalInTerm();
     });
 }
 
@@ -36,6 +41,7 @@ for (i = 0; i < operationButtons.length; i++) {
         if (operandAmount <1) operandChoice = currentlyClickedButton.getAttribute('data-operation');
         currentOperandElement.textContent += ' ' + operandChoice + ' ';
         // store first term given, if there is a second term, calculate result
+        isDecimalInTerm();
         if (numberArray.length === 0) {
             numberArray.push(parseFloat(term));
             term = 0;
@@ -66,6 +72,9 @@ allClearButton.addEventListener('click', () => {
     equationResult = '';
     previousOperandElement.textContent = '';
     currentOperandElement.textContent = '';
+    divideByZero = false;
+    isDecimal = false;
+    isDisableDecimalButtonTrue();
 });
 
 deleteButton.addEventListener('click', () => {
@@ -193,3 +202,29 @@ window.addEventListener('keyup', function(e) {
         operandAmount = 0;
     }
 });
+
+const isDecimalInTerm = function() {
+    let inputDisplay = currentOperandElement.textContent;
+
+    if (operandAmount == 0) {
+        isDecimal = inputDisplay.includes('.');
+        isDisableDecimalButtonTrue();
+    } else if (operandAmount == 1) {
+        decimalInSecondTerm = inputDisplay.split(operandChoice);
+        isDecimal = decimalInSecondTerm[1].includes('.');
+        isDisableDecimalButtonTrue();
+    } else {
+
+    }
+    
+}
+
+const isDisableDecimalButtonTrue = function() {
+    if (isDecimal == true) {
+        decimalButton.disabled = true;
+        decimalButton.classList.add('disabled');
+    } else {
+        decimalButton.disabled = false;
+        decimalButton.classList.remove('disabled');
+    }
+}
