@@ -6,8 +6,8 @@ const allClearButton = document.querySelector('[data-all-clear]');
 const previousOperandElement = document.querySelector('[data-previous-operand]');
 const currentOperandElement = document.querySelector('[data-current-operand]');
 const decimalButton = document.querySelector("#numbers > div.bottom-row > button:nth-child(2)")
-
 const numberArray = [];
+
 let term = 0;
 let operandAmount = 0;
 let decimalCount = 0;
@@ -75,10 +75,6 @@ allClearButton.addEventListener('click', () => {
     divideByZero = false;
     isDecimal = false;
     isDisableDecimalButtonTrue();
-});
-
-deleteButton.addEventListener('click', () => {
-
 });
 
 const checkOperandAmountToCalculate = function() {
