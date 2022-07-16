@@ -1,4 +1,7 @@
 # calculator
+Link to my project: https://soadaa56.github.io/calculator/
+I would like to return to this project to make the page 'beautiful' with CSS.
+
 A calculator that will be used in a webpage, built with HTML, CSS and JavaScript.
 
 This project will require some HTML and CSS knowledge to make the webpage appear as a basic calculator program would appear. The main purpose of this project to further my understanding of JavaScript.
