@@ -1,7 +1,7 @@
 # calculator
 Link to my project: https://soadaa56.github.io/calculator/ <br /><br />
 
-I would like to return to this project to make the page 'beautiful' with CSS.<br /><br />
+I would like to return to this project to make the page 'beautiful' with CSS and change Javascript to use a Calculator class<br /><br />
 
 A calculator that will be used in a webpage, built with HTML, CSS and JavaScript.<br />
 
